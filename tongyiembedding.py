@@ -1,4 +1,4 @@
-import dashscope
+import openai
 from dotenv import load_dotenv
 from langchain_chroma import Chroma
 
@@ -6,12 +6,16 @@ load_dotenv()
 import chromadb
 from chromadb.api.types import Documents, EmbeddingFunction, Embeddings
 from typing import List
-from http import HTTPStatus
 chroma_client = chromadb.Client()
 
 class QwenEmbeddingFunction(EmbeddingFunction):
-    def __init__(self, api_key: str  ):
+    def __init__(self, api_key: str, model: str = "text-embedding-v2"):
         self.api_key = api_key
+        self.model = model
+        self.client = openai.OpenAI(
+            api_key=api_key,
+            base_url="https://dashscope.aliyuncs.com/compatible-mode/v1"
+        )
 
     def __call__(self, texts: Documents) -> Embeddings:
         embeddings = [self.embed_query(text) for text in texts]
@@ -27,16 +31,11 @@ class QwenEmbeddingFunction(EmbeddingFunction):
         Returns:
             embeddings (List[float]): 输入文本的 embedding，一个浮点数值列表.
         """
-        response = dashscope.TextEmbedding.call(
-            model=dashscope.TextEmbedding.Models.text_embedding_v3,
-            api_key=self.api_key,
+        response = self.client.embeddings.create(
+            model=self.model,
             input=text
         )
-        #print(response.output)
-        if response.status_code == HTTPStatus.OK: # 假设 200 是 HTTP 状态码 OK
-            return response.output['embeddings'][0]['embedding'] # 假设返回的嵌入向量在 response.output['embedding']
-        else:
-            raise Exception(f"Failed to get embedding for text: {text}")
+        return response.data[0].embedding
 
     def embed_documents(self, texts: List[str]) -> List[List[float]]:
         """
