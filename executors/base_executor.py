@@ -9,7 +9,7 @@ from typing import Any, Dict, Optional
 
 from core.data_structures import Task, ExecutorError
 from core.context_manager import ContextManager
-from llm.client import OpenAIChatLLM
+from model.client import OpenAIChatLLM
 
 
 class ExecutorBase(ABC):

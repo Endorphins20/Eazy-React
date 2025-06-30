@@ -11,7 +11,7 @@ from config.settings import (
     API_KEY, EMBEDDING_API_KEY, MODEL_NAME, BASE_URL,
     DOCUMENT_FOLDER_PATH, MAX_ITERATIONS,CHROMA_PERSIST_DIRECTORY,EMBEDDING_BASE_URL,EMBEDDING_MODEL_NAME
 )
-from llm.client import OpenAIChatLLM
+from model.client import OpenAIChatLLM
 from knowledge.knowledge_base import ChromaKnowledgeBase
 from prompts.templates import (
     PlannerPrompt, DeducePrompt, CodeExecutionPrompt, UserProvidedReferGeneratorPrompt
@@ -25,7 +25,7 @@ from pipeline.iterative_pipeline import IterativePipeline
 from utils.document_loader import load_documents_from_folder, create_default_test_documents
 
 try:
-    from llm.tongyiembedding import QwenEmbeddingFunction
+    from model.embedding import QwenEmbeddingFunction
 except ImportError:
     print("[Warning] tongyiembedding module not found. Embedding may not work.")
     QwenEmbeddingFunction = None
@@ -166,7 +166,7 @@ async def run_main_example():
     await kag_system.initialize(force_rebuild_kb=False)
     
     # 运行查询
-    user_query = "凌云科技新员工入职导览与任务清单中关于报销住宿费的规定是什么？"
+    user_query = "财务报销制度说明中关于报销国内或国外住宿费的规定具体是什么？"
     final_answer = await kag_system.query(user_query)
     
     print(f"\n🎉 查询完成！")

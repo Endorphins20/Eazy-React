@@ -5,7 +5,7 @@
 import json
 from typing import List, Dict, Tuple
 
-from llm.client import OpenAIChatLLM
+from model.client import OpenAIChatLLM
 from core.context_manager import ContextManager
 from prompts.templates import PlannerPrompt
 

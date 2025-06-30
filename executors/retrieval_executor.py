@@ -36,7 +36,7 @@ class RetrievalExecutor(ExecutorBase):
         
         task.thought = (task.thought or "") + f"KB检索查询: '{resolved_query}', 过滤器: {actual_filter}.".strip()
         
-        retrieved_docs_with_meta = self.kb.retrieve(resolved_query, top_k=3, filter_dict=actual_filter)
+        retrieved_docs_with_meta = self.kb.retrieve(resolved_query, top_k=1, filter_dict=actual_filter)
         print('='*20)
         print(retrieved_docs_with_meta)
         print('='*20)

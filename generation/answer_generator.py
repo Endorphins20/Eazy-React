@@ -2,7 +2,7 @@
 答案生成器模块
 负责基于执行历史生成最终答案
 """
-from llm.client import OpenAIChatLLM
+from model.client import OpenAIChatLLM
 from core.context_manager import ContextManager
 from prompts.templates import UserProvidedReferGeneratorPrompt
 

@@ -1,0 +1,41 @@
+# LangChain 核心组件
+langchain
+langchain-core
+langchain-community
+
+# 向量数据库
+chromadb
+
+# Markdown处理
+markdown
+
+# 异步HTTP请求
+aiohttp
+
+# OpenAI API兼容库
+openai
+
+# 文本嵌入和向量化
+numpy
+
+# JSON处理和数据验证
+pydantic
+
+# 类型注解支持
+typing-extensions
+
+# 环境变量管理
+python-dotenv
+
+# 文件操作和路径处理
+pathlib
+
+# 日志记录
+loguru
+
+# 配置管理
+PyYAML
+
+# 数据处理
+pandas
+
