@@ -12,7 +12,7 @@ import shutil
 # --- Langchain and Chroma Imports ---
 from langchain_core.documents import Document
 from langchain_chroma import Chroma
-from tongyiembedding import QwenEmbeddingFunction
+from llm.tongyiembedding import QwenEmbeddingFunction
 
 # --- Configuration ---
 CHROMA_PERSIST_DIRECTORY = "chroma_db_kag_recursive"
@@ -807,7 +807,7 @@ async def run_main_logic_with_user_data_deep_recursive_v2():  # Renamed main fun
 	]
 	initial_langchain_docs = [Document(page_content=d["page_content"], metadata=d["metadata"]) for d in
 							  initial_user_docs_as_dicts]
-	from md2Document import read_md_file, create_document_from_md
+	from utils.md2Document import read_md_file, create_document_from_md
 	initial_langchain_docs = []
 	folder_path = r'E:\workspaceE\kag\凌云科技文档'  # Windows路径
 	# 获取文件夹中所有文件
