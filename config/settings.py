@@ -5,7 +5,7 @@
 import os
 
 # Chroma 数据库配置
-CHROMA_PERSIST_DIRECTORY = "chroma_db_kag_recursive1"
+CHROMA_PERSIST_DIRECTORY = "chroma_db"
 
 
 # API Keys 配置
@@ -21,4 +21,4 @@ MAX_ITERATIONS = 10
 TRUNCATE_LENGTH = 150
 
 # 文档路径配置
-DOCUMENT_FOLDER_PATH = r'E:\workspaceE\kag\凌云科技文档'
+DOCUMENT_FOLDER_PATH = r'./files'

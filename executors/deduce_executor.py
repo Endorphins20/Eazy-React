@@ -8,7 +8,7 @@ from typing import Dict, Any, Optional
 from executors.base_executor import ExecutorBase
 from core.data_structures import Task, ExecutorError, DeduceExecutorOutput
 from core.context_manager import ContextManager
-from llm.client import OpenAIChatLLM
+from model.client import OpenAIChatLLM
 from prompts.templates import BasePrompt, DeducePrompt
 
 
