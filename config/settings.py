@@ -10,7 +10,7 @@ CHROMA_PERSIST_DIRECTORY = "chroma_db"
 
 # API Keys 配置
 API_KEY = "sk-"
-EMBEDDING_API_KEY = "sk-af4423da370c478abaf68b056f547c6e"
+EMBEDDING_API_KEY = "sk-"
 MODEL_NAME = "qwen-plus"
 EMBEDDING_MODEL_NAME = "text-embedding-v2"
 BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
