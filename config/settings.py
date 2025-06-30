@@ -9,7 +9,7 @@ CHROMA_PERSIST_DIRECTORY = "chroma_db_kag_recursive1"
 
 
 # API Keys 配置
-API_KEY = "sk-af4423da370c478abaf68b056f547c6e"
+API_KEY = "sk-"
 EMBEDDING_API_KEY = "sk-af4423da370c478abaf68b056f547c6e"
 MODEL_NAME = "qwen-plus"
 EMBEDDING_MODEL_NAME = "text-embedding-v2"
