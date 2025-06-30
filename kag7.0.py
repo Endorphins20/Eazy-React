@@ -12,7 +12,7 @@ import shutil
 # --- Langchain and Chroma Imports ---
 from langchain_core.documents import Document
 from langchain_chroma import Chroma
-from tongyiembedding import QwenEmbeddingFunction
+from llm.tongyiembedding import QwenEmbeddingFunction
 
 # --- Configuration ---
 CHROMA_PERSIST_DIRECTORY = "chroma_db_kag_recursive"
@@ -807,9 +807,9 @@ async def run_main_logic_with_user_data_deep_recursive_v2():  # Renamed main fun
 	]
 	initial_langchain_docs = [Document(page_content=d["page_content"], metadata=d["metadata"]) for d in
 							  initial_user_docs_as_dicts]
-	from md2Document import read_md_file, create_document_from_md
+	from utils.md2Document import read_md_file, create_document_from_md
 	initial_langchain_docs = []
-	folder_path = r'D:\Master\llm\database\kag\测试数据集'  # Windows路径
+	folder_path = r'E:\workspaceE\kag\凌云科技文档'  # Windows路径
 	# 获取文件夹中所有文件
 	files = os.listdir(folder_path)
 	# 筛选出所有 .md 文件
@@ -827,7 +827,7 @@ async def run_main_logic_with_user_data_deep_recursive_v2():  # Renamed main fun
 	try:
 		chroma_kb = ChromaKnowledgeBase(initial_documents=initial_langchain_docs, embedding_function=embedding_function,
 										force_rebuild=False,
-										persist_directory = 'chroma_db_kag_recursive_2')
+										persist_directory = 'chroma_db_kag_recursive_3')
 	except Exception as e:
 		print(f"创建Chroma知识库失败: {e}"); import traceback; traceback.print_exc(); return
 
@@ -848,10 +848,10 @@ async def run_main_logic_with_user_data_deep_recursive_v2():  # Renamed main fun
 	}
 	planner = Planner(llm_client, planner_prompt)
 	generator = AnswerGenerator(llm_client, refer_generator_prompt)
-	pipeline = IterativePipeline(planner, executors_map, generator, max_iterations=8)  # 增加迭代次数以允许更深的递归
+	pipeline = IterativePipeline(planner, executors_map, generator, max_iterations=10)  # 增加迭代次数以允许更深的递归
 
 	# --- Run Query Designed to Force Multi-Hop Retrieval ---
-	user_query_to_run = "你是谁"
+	user_query_to_run = "凌云科技新员工入职手册中关于住宿费如何报销的"
 
 	print(f"\n🚀 Running DEEP RECURSIVE V2 query: \"{user_query_to_run}\"")
 	final_answer = await pipeline.run(user_query_to_run)
